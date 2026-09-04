@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="gu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>બદામ | Prunus dulcis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;600;700&family=Noto+Sans+Gujarati:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FBF3E7;
+      --paper: #FFFBF4;
+      --shell: #8B5E3C;
+      --shell-dark: #5C3B21;
+      --olive: #6E7F52;
+      --olive-dark: #4E5C39;
+      --ink: #3A2A1C;
+      --line: #E4D3B8;
+      --blossom: #E8B4A2;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Noto Sans Gujarati', sans-serif;
+      line-height: 1.9;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2 {
+      font-family: 'Noto Serif Gujarati', serif;
+      color: var(--shell-dark);
+      margin: 0;
+    }
+
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px 120px;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      padding: 64px 24px 48px;
+      text-align: center;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(232, 180, 162, 0.35), transparent 55%),
+        radial-gradient(ellipse at 80% 10%, rgba(110, 127, 82, 0.18), transparent 50%),
+        var(--cream);
+    }
+
+    .hero svg {
+      width: 150px;
+      height: auto;
+      display: block;
+      margin: 0 auto 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 7vw, 3.4rem);
+      font-weight: 700;
+    }
+
+    .hero .sci {
+      font-style: italic;
+      color: var(--olive-dark);
+      font-family: 'Noto Serif Gujarati', serif;
+      font-size: 1.15rem;
+      margin-top: 6px;
+    }
+
+    .hero .tagline {
+      max-width: 480px;
+      margin: 18px auto 0;
+      color: #6b5640;
+      font-size: 1.02rem;
+    }
+
+    /* AUDIO PANEL */
+    .audio-panel {
+      max-width: 760px;
+      margin: -28px auto 40px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px 22px;
+      box-shadow: 0 10px 30px rgba(92, 59, 33, 0.08);
+    }
+
+    .audio-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .play-btn {
+      width: 56px;
+      height: 56px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      border: none;
+      background: var(--shell);
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .15s ease, background .2s ease;
+    }
+
+    .play-btn:hover {
+      background: var(--shell-dark);
+    }
+
+    .play-btn:active {
+      transform: scale(0.94);
+    }
+
+    .play-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .audio-meta {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .audio-meta .status {
+      font-weight: 600;
+      color: var(--shell-dark);
+      font-size: .98rem;
+    }
+
+    .audio-meta .sub {
+      font-size: .82rem;
+      color: #8a7860;
+      margin-top: 2px;
+    }
+
+    .progress-track {
+      height: 6px;
+      background: var(--line);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 14px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--olive);
+      border-radius: 4px;
+      transition: width .3s linear;
+    }
+
+    .audio-controls-2 {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+      font-size: .85rem;
+      color: #6b5640;
+    }
+
+    select {
+      font-family: 'Noto Sans Gujarati', sans-serif;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 8px;
+      padding: 6px 10px;
+      color: var(--ink);
+      font-size: .85rem;
+    }
+
+    .rate-btns {
+      display: flex;
+      gap: 6px;
+    }
+
+    .rate-btns button {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: .8rem;
+      cursor: pointer;
+      color: var(--ink);
+    }
+
+    .rate-btns button.active {
+      background: var(--olive);
+      color: #fff;
+      border-color: var(--olive);
+    }
+
+    .voice-note {
+      margin-top: 12px;
+      font-size: .78rem;
+      color: #9c7a4f;
+      background: #FBEFDD;
+      border-radius: 8px;
+      padding: 8px 12px;
+      display: none;
+    }
+
+    .voice-note.show {
+      display: block;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--line);
+      transition: background .4s ease;
+      scroll-margin-top: 20px;
+    }
+
+    section:last-child {
+      border-bottom: none;
+    }
+
+    section.speaking {
+      background: linear-gradient(90deg, rgba(110, 127, 82, 0.07), transparent);
+      border-radius: 12px;
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    section h2 .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--blossom);
+      flex: 0 0 auto;
+    }
+
+    section p {
+      margin: 0 0 14px;
+      font-size: 1.02rem;
+      color: #4a3826;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 18px;
+      font-size: .95rem;
+    }
+
+    table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    table td:first-child {
+      color: var(--olive-dark);
+      font-weight: 600;
+      width: 40%;
+    }
+
+    ul.benefits {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    ul.benefits li {
+      padding: 12px 0 12px 30px;
+      position: relative;
+      border-bottom: 1px dashed var(--line);
+      color: #4a3826;
+    }
+
+    ul.benefits li:last-child {
+      border-bottom: none;
+    }
+
+    ul.benefits li::before {
+      content: "◆";
+      position: absolute;
+      left: 0;
+      top: 12px;
+      color: var(--shell);
+      font-size: .7rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 24px 60px;
+      color: #9c8467;
+      font-size: .85rem;
+    }
+
+    @media (max-width:480px) {
+      .hero {
+        padding: 48px 16px 36px;
+      }
+
+      .audio-panel {
+        margin: -20px 16px 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="hero">
+    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 20C70 20 45 55 45 100C45 145 70 180 100 180C130 180 155 145 155 100C155 55 130 20 100 20Z"
+        fill="#C99A6B" stroke="#8B5E3C" stroke-width="4" />
+      <path d="M100 35C78 35 60 65 60 100C60 135 78 165 100 165C122 165 140 135 140 100C140 65 122 35 100 35Z"
+        fill="#E8CBA0" opacity="0.6" />
+      <circle cx="150" cy="55" r="7" fill="#E8B4A2" />
+      <circle cx="45" cy="150" r="5" fill="#6E7F52" />
+    </svg>
+    <h1>બદામ</h1>
+    <div class="sci">Prunus dulcis</div>
+    <p class="tagline">પ્રકૃતિની પૌષ્ટિક ભેટ — તેનો ઇતિહાસ, ખેતી, પોષણ અને સ્વાસ્થ્ય લાભો વિશે સંપૂર્ણ માહિતી, હવે
+      સાંભળો પણ ખરી.</p>
+  </div>
+
+  <div class="audio-panel">
+    <div class="audio-row">
+      <button class="play-btn" id="playBtn" aria-label="સાંભળો">
+        <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+        <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none">
+          <path d="M6 5h4v14H6zM14 5h4v14h-4z" />
+        </svg>
+      </button>
+      <div class="audio-meta">
+        <div class="status" id="statusText">Click the Play Button</div>
+        <div class="sub" id="subText">5 to 6 minute aodioe</div>
+      </div>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="audio-controls-2">
+      <span>Voice:</span>
+      <select id="voiceSelect"></select>
+      <span style="margin-left:8px;">Speed:</span>
+      <div class="rate-btns" id="rateBtns">
+        <button data-rate="0.8" class="active">0.5</button>
+        <button data-rate="0.95">1.0</button>
+        <button data-rate="1.15">2.0</button>
+      </div>
+    </div>
+    <div class="voice-note" id="voiceNote"></div>
+  </div>
+
+  <div class="wrap" id="article">
+
+    <section data-idx="0">
+      <h2><span class="dot"></span>પરિચય</h2>
+      <p>બદામ એ દુનિયાભરમાં સૌથી વધુ પસંદ કરવામાં આવતો સૂકોમેવો છે. તેનું વૈજ્ઞાનિક નામ પ્રૂનસ ડલ્સિસ છે, અને તે ગુલાબ
+        કુળ એટલે કે રોઝેસી પરિવારનો સભ્ય છે. બદામનું ઝાડ મૂળ રીતે મધ્ય-પૂર્વ અને દક્ષિણ એશિયાના વિસ્તારોમાંથી આવે છે,
+        પરંતુ આજે તેની ખેતી દુનિયાના અનેક ભાગોમાં થાય છે. બદામને સ્વાસ્થ્ય માટે ખૂબ જ ફાયદાકારક માનવામાં આવે છે, કારણ કે
+        તેમાં પ્રોટીન, તંદુરસ્ત ચરબી, વિટામિન અને ખનિજ તત્વો ભરપૂર માત્રામાં હોય છે. ભારતમાં બદામનો ઉપયોગ મીઠાઈઓ, નાસ્તા
+        અને આયુર્વેદિક ઔષધિઓમાં સદીઓથી થતો આવ્યો છે.</p>
+    </section>
+
+    <section data-idx="1">
+      <h2><span class="dot"></span>વૈજ્ઞાનિક વર્ગીકરણ</h2>
+      <table>
+        <tr>
+          <td>જગત</td>
+          <td>વનસ્પતિ સૃષ્ટિ (Plantae)</td>
+        </tr>
+        <tr>
+          <td>વિભાગ</td>
+          <td>સપુષ્પ વનસ્પતિ (Angiosperms)</td>
+        </tr>
+        <tr>
+          <td>વર્ગ</td>
+          <td>દ્વિદળી (Eudicots)</td>
+        </tr>
+        <tr>
+          <td>કુળ</td>
+          <td>રોઝેસી (Rosaceae)</td>
+        </tr>
+        <tr>
+          <td>જીનસ</td>
+          <td>પ્રૂનસ (Prunus)</td>
+        </tr>
+        <tr>
+          <td>જાતિ</td>
+          <td>ડલ્સિસ (dulcis)</td>
+        </tr>
+      </table>
+      <p>બદામનું વૈજ્ઞાનિક વર્ગીકરણ જોઈએ તો ઉપરના કોષ્ટકમાં દર્શાવ્યા મુજબ છે. બદામ આલૂ, જરદાળુ અને ચેરી જેવા ફળોની
+        નજીકની સગોત્ર ગણાય છે, કારણ કે આ બધા જ પ્રૂનસ જીનસમાં આવે છે.</p>
+    </section>
+
+    <section data-idx="2">
+      <h2><span class="dot"></span>મૂળ અને ઇતિહાસ</h2>
+      <p>બદામની ખેતીનો ઇતિહાસ હજારો વર્ષો જૂનો છે. એવું માનવામાં આવે છે કે બદામનું ઝાડ સૌપ્રથમ ઈરાન અને તેની આસપાસના
+        મધ્ય-પૂર્વ વિસ્તારોમાં ઊગ્યું હતું. ત્યાંથી તે ધીમે ધીમે ભૂમધ્ય સમુદ્રના કિનારાના દેશો, જેમ કે ગ્રીસ, ઇટાલી અને
+        સ્પેન સુધી પહોંચ્યું. પ્રાચીન ઇજિપ્તમાં પણ બદામનો ઉલ્લેખ મળે છે, અને કહેવાય છે કે ફારુનની કબરોમાં પણ બદામ મળી
+        આવી હતી. વેપાર માર્ગોના વિકાસ સાથે બદામ ભારત, અફઘાનિસ્તાન અને પછી અમેરિકા સુધી પહોંચ્યું. આજે અમેરિકાનું
+        કેલિફોર્નિયા રાજ્ય દુનિયામાં બદામનું સૌથી મોટું ઉત્પાદક છે.</p>
+    </section>
+
+    <section data-idx="3">
+      <h2><span class="dot"></span>છોડ અને ફળનું વર્ણન</h2>
+      <p>બદામનું ઝાડ સામાન્ય રીતે ચારથી દસ મીટર જેટલી ઊંચાઈ સુધી વધે છે. તેના પર વસંત ઋતુમાં સફેદ અથવા આછા ગુલાબી રંગના
+        સુંદર ફૂલો ખીલે છે, જે જોવામાં ખૂબ જ આકર્ષક લાગે છે. ફૂલ ખરી ગયા પછી તેની જગ્યાએ લીલા રંગનું એક કવચ જેવું ફળ બને
+        છે. આ બહારનું લીલું આવરણ સુકાઈને ફાટે છે, અને અંદરથી સખત કોટલું નીકળે છે. આ કોટલાની અંદર જ આપણે ખાઈએ છીએ તે ખરી
+        બદામ છુપાયેલી હોય છે. બદામના ઝાડને સારી રીતે ઊગવા માટે ગરમ અને સૂકું વાતાવરણ, પૂરતો સૂર્યપ્રકાશ અને શિયાળામાં
+        થોડી ઠંડક જરૂરી હોય છે.</p>
+    </section>
+
+    <section data-idx="4">
+      <h2><span class="dot"></span>ખેતી અને ઉત્પાદન</h2>
+      <p>બદામની ખેતી માટે રેતાળ અને પાણીના સારા નિતારવાળી જમીન સૌથી યોગ્ય ગણાય છે. બદામનું ઝાડ વાવ્યા પછી ફળ આપતા
+        સામાન્ય રીતે ત્રણથી પાંચ વર્ષ લાગે છે, પરંતુ સંપૂર્ણ ઉત્પાદન માટે તેને દસથી બાર વર્ષ જેટલો સમય લાગી શકે છે.
+        મધમાખીઓ બદામના ફૂલોના પરાગનયનમાં ખૂબ જ મહત્વની ભૂમિકા ભજવે છે. દુનિયામાં અમેરિકા પછી સ્પેન, ઓસ્ટ્રેલિયા, ઈરાન
+        અને તુર્કી બદામના મુખ્ય ઉત્પાદક દેશો ગણાય છે. ભારતમાં જમ્મુ-કાશ્મીર રાજ્ય બદામની ખેતી માટે ખાસ જાણીતું છે.</p>
+    </section>
+
+    <section data-idx="5">
+      <h2><span class="dot"></span>પોષક તત્વો</h2>
+      <table>
+        <tr>
+          <td>ઊર્જા (૧૦૦ ગ્રામ)</td>
+          <td>આશરે ૫૫૦–૬૦૦ કિલોકેલરી</td>
+        </tr>
+        <tr>
+          <td>પ્રોટીન</td>
+          <td>આશરે ૨૧ ગ્રામ</td>
+        </tr>
+        <tr>
+          <td>ચરબી</td>
+          <td>આશરે ૫૦ ગ્રામ (મોટા ભાગે તંદુરસ્ત)</td>
+        </tr>
+        <tr>
+          <td>રેસા</td>
+          <td>આશરે ૧૨ ગ્રામ</td>
+        </tr>
+        <tr>
+          <td>મુખ્ય વિટામિન</td>
+          <td>વિટામિન ઈ</td>
+        </tr>
+        <tr>
+          <td>મુખ્ય ખનિજો</td>
+          <td>મેગ્નેશિયમ, કેલ્શિયમ, પોટેશિયમ, આયર્ન, ઝિંક</td>
+        </tr>
+      </table>
+      <p>બદામ પોષક તત્વોનો ભંડાર ગણાય છે. તેમાં વિટામિન ઈ ભરપૂર માત્રામાં હોય છે, જે ત્વચા અને આંખો માટે ખૂબ જ ફાયદાકારક
+        ગણાય છે. આ ઉપરાંત તેમાં મેગ્નેશિયમ, કેલ્શિયમ, પોટેશિયમ, આયર્ન અને ઝિંક જેવા ખનિજ તત્વો પણ સારી માત્રામાં જોવા
+        મળે છે.</p>
+    </section>
+
+    <section data-idx="6">
+      <h2><span class="dot"></span>સ્વાસ્થ્ય માટે ફાયદા</h2>
+      <ul class="benefits">
+        <li>તંદુરસ્ત ચરબી હૃદયના સ્વાસ્થ્ય માટે સારી ગણાય છે અને ખરાબ કોલેસ્ટ્રોલ ઘટાડવામાં મદદ કરે છે.</li>
+        <li>એન્ટીઓક્સિડન્ટ તત્વો શરીરના કોષોને નુકસાનથી બચાવે છે અને વૃદ્ધત્વની પ્રક્રિયાને ધીમી પાડે છે.</li>
+        <li>મગજની કાર્યક્ષમતા વધારવામાં મદદરૂપ થાય છે, એટલે યાદશક્તિ સુધારવા માટે બદામ ખાવાની સલાહ અપાય છે.</li>
+        <li>રેસા પાચનતંત્રને સ્વસ્થ રાખવામાં મદદ કરે છે.</li>
+        <li>કેલ્શિયમ અને મેગ્નેશિયમને કારણે હાડકાં મજબૂત બનાવવામાં મદદરૂપ થાય છે.</li>
+        <li>ત્વચાને ચમકદાર અને સ્વસ્થ રાખવામાં મદદ કરે છે.</li>
+        <li>રક્તમાં શર્કરાનું સ્તર નિયંત્રિત રાખવામાં મદદરૂપ થાય છે.</li>
+        <li>લાંબા સમય સુધી પેટ ભરેલું લાગે છે, જે વજન નિયંત્રણમાં મદદરૂપ થાય છે.</li>
+      </ul>
+    </section>
+
+    <section data-idx="7">
+      <h2><span class="dot"></span>ઉપયોગો</h2>
+      <p>બદામનો ઉપયોગ અનેક રીતે કરવામાં આવે છે. તેને કાચી, શેકેલી અથવા પલાળીને ખાવામાં આવે છે. ભારતીય રસોઈમાં બદામનો
+        ઉપયોગ મીઠાઈઓ, હલવો, બરફી અને શરબતમાં થાય છે. બદામનું દૂધ આજકાલ ગાયના દૂધના વિકલ્પ તરીકે ખૂબ જ લોકપ્રિય બન્યું
+        છે, ખાસ કરીને જે લોકોને દૂધની એલર્જી હોય અથવા જેઓ શાકાહારી જીવનશૈલી અપનાવે છે તેમના માટે. બદામનું તેલ ત્વચા અને
+        વાળની સંભાળ માટે પણ વપરાય છે. આ ઉપરાંત બદામનો લોટ બેકિંગમાં ઘઉંના લોટના વિકલ્પ તરીકે ઉપયોગમાં લેવાય છે.</p>
+    </section>
+
+    <section data-idx="8">
+      <h2><span class="dot"></span>સાવચેતીઓ</h2>
+      <p>બદામ સ્વાસ્થ્ય માટે ફાયદાકારક હોવા છતાં તેનું સેવન મર્યાદિત માત્રામાં કરવું જોઈએ, કારણ કે તેમાં કેલરી વધુ હોય
+        છે અને વધુ પડતું સેવન વજન વધારી શકે છે. કેટલાક લોકોને બદામથી એલર્જી પણ થઈ શકે છે, જેમાં ખંજવાળ, સોજો અથવા શ્વાસ
+        લેવામાં તકલીફ જેવા લક્ષણો દેખાઈ શકે છે. કડવી બદામની જાતમાં એક ઝેરી તત્વ હોય છે, જેને પ્રોસેસ કર્યા વગર ખાવું
+        જોખમી બની શકે છે, એટલે બજારમાં મળતી મીઠી બદામ જ ખાવા માટે વાપરવામાં આવે છે.</p>
+    </section>
+
+    <section data-idx="9">
+      <h2><span class="dot"></span>રસપ્રદ તથ્યો</h2>
+      <p>બદામ વિશે કેટલીક રસપ્રદ વાતો પણ જાણવા જેવી છે. વૈજ્ઞાનિક દ્રષ્ટિએ બદામ ખરેખર બદામ નહીં પરંતુ એક પ્રકારનું બીજ
+        ગણાય છે, જે ડ્રુપ નામના ફળની અંદર રહેલું હોય છે. બદામના ઝાડને ફૂલ આવવાનો સમય એટલો સુંદર હોય છે કે અમેરિકાના
+        કેલિફોર્નિયામાં દર વર્ષે બદામના ફૂલોનો તહેવાર ઉજવવામાં આવે છે. બદામનું ઝાડ સો વર્ષ સુધી જીવી શકે છે અને લાંબા
+        સમય સુધી ફળ આપતું રહે છે. આટલી બધી ખાસિયતોને કારણે જ બદામને પ્રકૃતિની અમૂલ્ય ભેટ ગણવામાં આવે છે.</p>
+    </section>
+
+  </div>
+
+  <footer>સંપૂર્ણ ગુજરાતીમાં તૈયાર કરવામાં આવેલ — બદામ (Prunus dulcis) વિશે વિગતવાર માહિતી</footer>
+
+  <script>
+    (function () {
+      const synth = window.speechSynthesis;
+      const playBtn = document.getElementById('playBtn');
+      const playIcon = document.getElementById('playIcon');
+      const pauseIcon = document.getElementById('pauseIcon');
+      const statusText = document.getElementById('statusText');
+      const subText = document.getElementById('subText');
+      const progressFill = document.getElementById('progressFill');
+      const voiceSelect = document.getElementById('voiceSelect');
+      const voiceNote = document.getElementById('voiceNote');
+      const rateBtns = document.getElementById('rateBtns');
+
+      const sections = Array.from(document.querySelectorAll('#article section'));
+      const texts = sections.map(sec => {
+        const heading = sec.querySelector('h2').textContent.trim();
+        const paras = Array.from(sec.querySelectorAll('p, li')).map(el => el.textContent.trim()).join(' ');
+        return heading + '. ' + paras;
+      });
+
+      let currentRate = 0.8;
+      let currentIdx = 0;
+      let isPlaying = false;
+      let voices = [];
+      let chosenVoice = null;
+
+      function isGujarati(v) {
+        return (v.lang && v.lang.toLowerCase().startsWith('gu')) || /gujarati/i.test(v.name);
+      }
+      function isHindi(v) {
+        return (v.lang && v.lang.toLowerCase().startsWith('hi')) || /hindi/i.test(v.name);
+      }
+
+      function populateVoices() {
+        voices = synth.getVoices();
+        voiceSelect.innerHTML = '';
+
+        let guVoices = voices.filter(isGujarati);
+        let hiVoices = voices.filter(isHindi);
+        let enInVoices = voices.filter(v => v.lang && v.lang.toLowerCase() === 'en-in');
+
+        // Preferred order: Gujarati > Hindi > en-IN > everything else
+        let ranked = [...guVoices, ...hiVoices, ...enInVoices, ...voices.filter(v => !guVoices.includes(v) && !hiVoices.includes(v) && !enInVoices.includes(v))];
+
+        if (ranked.length === 0) {
+          voiceSelect.innerHTML = '<option>કોઈ અવાજ ઉપલબ્ધ નથી</option>';
+          voiceSelect.disabled = true;
+        } else {
+          ranked.forEach((v) => {
+            const opt = document.createElement('option');
+            opt.value = v.name;
+            let tag = isGujarati(v) ? ' ★ ગુજરાતી' : (isHindi(v) ? ' ★ હિન્દી' : '');
+            opt.textContent = v.name + ' (' + v.lang + ')' + tag;
+            voiceSelect.appendChild(opt);
+          });
+          chosenVoice = ranked[0];
+          voiceSelect.value = chosenVoice.name;
+        }
+
+        if (guVoices.length > 0) {
+          voiceNote.classList.remove('show');
+        } else if (hiVoices.length > 0) {
+          voiceNote.classList.add('show');
+          voiceNote.textContent = 'નોંધ: ગુજરાતી અવાજ મળ્યો નથી, એટલે હિન્દી અવાજ પસંદ કરેલો છે — ગુજરાતી લખાણ માટે આ સૌથી સ્પષ્ટ વિકલ્પ છે. જો Microsoft Edge બ્રાઉઝરમાં ખોલો તો ગુજરાતી અવાજ (Dhwani) મળવાની શક્યતા વધુ છે.';
+        } else {
+          voiceNote.classList.add('show');
+          voiceNote.textContent = 'નોંધ: આ બ્રાઉઝરમાં ગુજરાતી કે હિન્દી અવાજ મળ્યો નથી, એટલે એક અંગ્રેજી અવાજ ગુજરાતી લખાણ વાંચવાનો પ્રયત્ન કરશે અને તે અસ્પષ્ટ લાગશે. કૃપા કરી આ પેજ Microsoft Edge બ્રાઉઝરમાં ખોલો — તેમાં મફત ગુજરાતી/હિન્દી અવાજ ઉપલબ્ધ છે.';
+        }
+      }
+
+      populateVoices();
+      if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = populateVoices;
+      }
+
+      voiceSelect.addEventListener('change', () => {
+        chosenVoice = voices.find(v => v.name === voiceSelect.value) || chosenVoice;
+      });
+
+      rateBtns.addEventListener('click', (e) => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        currentRate = parseFloat(btn.dataset.rate);
+        rateBtns.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+
+      function clearHighlight() {
+        sections.forEach(s => s.classList.remove('speaking'));
+      }
+
+      function speakFrom(idx) {
+        if (idx >= texts.length) {
+          isPlaying = false;
+          currentIdx = 0;
+          clearHighlight();
+          playIcon.style.display = '';
+          pauseIcon.style.display = 'none';
+          statusText.textContent = 'સાંભળવા માટે દબાવો';
+          progressFill.style.width = '0%';
+          return;
+        }
+        currentIdx = idx;
+        clearHighlight();
+        sections[idx].classList.add('speaking');
+        sections[idx].scrollIntoView({behavior: 'smooth', block: 'center'});
+
+        const utter = new SpeechSynthesisUtterance(texts[idx]);
+        utter.lang = (chosenVoice && chosenVoice.lang) ? chosenVoice.lang : 'gu-IN';
+        if (chosenVoice) utter.voice = chosenVoice;
+        utter.rate = currentRate;
+        utter.pitch = 1;
+
+        utter.onend = () => {
+          if (isPlaying) {
+            progressFill.style.width = (((idx + 1) / texts.length) * 100) + '%';
+            speakFrom(idx + 1);
+          }
+        };
+        utter.onerror = () => {
+          if (isPlaying) speakFrom(idx + 1);
+        };
+
+        statusText.textContent = 'સાંભળી રહ્યા છો: ' + sections[idx].querySelector('h2').textContent.trim();
+        subText.textContent = 'ભાગ ' + (idx + 1) + ' / ' + texts.length;
+        progressFill.style.width = ((idx / texts.length) * 100) + '%';
+
+        synth.speak(utter);
+      }
+
+      playBtn.addEventListener('click', () => {
+        if (!isPlaying) {
+          isPlaying = true;
+          playIcon.style.display = 'none';
+          pauseIcon.style.display = '';
+          if (synth.paused && synth.speaking) {
+            synth.resume();
+          } else {
+            synth.cancel();
+            speakFrom(currentIdx);
+          }
+        } else {
+          isPlaying = false;
+          playIcon.style.display = '';
+          pauseIcon.style.display = 'none';
+          synth.pause();
+        }
+      });
+
+      window.addEventListener('beforeunload', () => {synth.cancel();});
+    })();
+  </script>
+
+</body>
+
+</html>
